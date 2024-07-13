@@ -36,7 +36,7 @@ public class UrlViewCountExample {
                                 return element.timestamp;
                             }
                         }));
-//        stream.print("input");
+        stream.print("input");
 
         // 需要按照url分组，开滑动窗口统计
         stream.keyBy(data -> data.url)
@@ -48,7 +48,7 @@ public class UrlViewCountExample {
         env.execute();
     }
 
-    // 自定义增量聚合函数，来一条数据就加一
+    // 自定义【增量】聚合函数，来一条数据就加一
     public static class UrlViewCountAgg implements AggregateFunction<Event, Long, Long> {
         @Override
         public Long createAccumulator() {

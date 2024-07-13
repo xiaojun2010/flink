@@ -1,0 +1,142 @@
+{
+  "type": "page",
+  "body": {
+    "type": "form",
+    "title": "",
+    "mode": "horizontal",
+    "body": [
+      {
+        "type": "input-text",
+        "name": "metric_name",
+        "label": "指标名称",
+        "placeholder": "指标名称",
+        "required": true
+      },
+      {
+        "type": "input-text",
+        "name": "metric_code",
+        "label": "指标唯一标识",
+        "placeholder": "METRIC_",
+        "required": true
+      },
+      {
+        "type": "select",
+        "name": "datasource",
+        "label": "指标数据源",
+        "required": true,
+        "value": "kafka",
+        "options": [
+          {
+            "label": "Mysql 表",
+            "value": "mysql"
+          },
+          {
+            "label": "Kafka 字段",
+            "value": "kafka"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "is_enable",
+        "label": "指标状态",
+        "required": true,
+        "value": "启用",
+        "options": [
+          {
+            "label": "启用",
+            "value": "启用"
+          },
+          {
+            "label": "停用",
+            "value": "停用"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "scene",
+        "label": "风控场景 (多选)",
+        "required": true,
+        "multiple": true,
+        "value": ["SCEN_LOGIN","SCEN_SHOPPING"],
+        "options": [
+          {
+            "label": "账号场景",
+            "value": "SCEN_ACCOUNT"
+          },
+          {
+            "label": "登录场景",
+            "value": "SCEN_LOGIN"
+          },
+          {
+            "label": "购物场景",
+            "value": "SCEN_SHOPPING"
+          },
+          {
+            "label": "支付场景",
+            "value": "SCEN_PAY"
+          },
+          {
+            "label": "优惠券场景",
+            "value": "SCEN_COUPON"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "event",
+        "label": "行为事件 (多选)",
+        "required": true,
+        "multiple": true,
+        "value": ["login_success","login_fail"],
+        "options": [
+          {
+            "label": "登录事件",
+            "value": "login_success"
+          },
+          {
+            "label": "登录失败事件",
+            "value": "login_fail"
+          },
+          {
+            "label": "下单事件",
+            "value": "order"
+          },
+          {
+            "label": "支付事件",
+            "value": "pay"
+          },
+          {
+            "label": "用户信息修改事件",
+            "value": "user_profile_modify"
+          },
+          {
+            "label": "优惠券领取事件",
+            "value": "coupons_receive"
+          },
+          {
+            "label": "优惠券使用事件",
+            "value": "coupons_use"
+          },
+          {
+            "label": "发表评论事件",
+            "value": "comment"
+          },
+          {
+            "label": "商品收藏事件",
+            "value": "favorites"
+          },
+          {
+            "label": "浏览事件",
+            "value": "browse"
+          },
+          {
+            "label": "加入购物车事件",
+            "value": "cart_add"
+          }
+        ]
+      }
+    ]
+  }
+}

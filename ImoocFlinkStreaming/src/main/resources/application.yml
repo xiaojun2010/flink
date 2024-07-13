@@ -1,0 +1,7 @@
+cn:
+  imooc:
+    el:
+      name: this is el
+    spel:
+      name: "{'name': 'SpEl', 'web': 'imooc.cn'}"
+      name2: "SpEl#imooc.cn"

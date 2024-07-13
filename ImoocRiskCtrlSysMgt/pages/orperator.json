@@ -1,0 +1,84 @@
+{
+    "type": "page",
+    "body": [
+                      
+      {
+        
+        "type": "crud",
+        "title": "",
+        "data": {
+          "rows" : [
+            {
+              "id": 1,
+              "name": "! (非)",
+              "type": "逻辑运算符"
+            },
+            {
+              "id": 2,
+              "name": "|| (或)",
+              "type": "逻辑运算符"
+            },
+            {
+              "id": 3,
+              "name": "&& (与)",
+              "type": "逻辑运算符"
+            },
+            {
+              "id": 4,
+              "name": "^ (异或)",
+              "type": "逻辑运算符"
+            },
+            {
+              "id": 4,
+              "name": "> (大于)",
+              "type": "关系运算符"
+            },
+            {
+              "id": 5,
+              "name": "> (小于)",
+              "type": "关系运算符"
+            },
+            {
+              "id": 6,
+              "name": "= (等于)",
+              "type": "关系运算符"
+            },
+            {
+              "id": 7,
+              "name": ">= (大于等于)",
+              "type": "关系运算符"
+            },
+            {
+              "id": 8,
+              "name": "<= (小于等于)",
+              "type": "关系运算符"
+            },
+            {
+              "id": 9,
+              "name": "!= (不等于)",
+              "type": "关系运算符"
+            }
+           
+          ]
+        },
+        "source": "$rows",
+        "columnsTogglable": false,
+        "rowClassNameExpr": "<%= data.id == 1 ? 'bg-green-100' : '' %>",
+
+        "columns": [
+          {
+            "name": "id",
+            "label": "序号"
+          },
+          {
+            "name": "name",
+            "label": "运算符表达式"
+          },
+          {
+            "name": "type",
+            "label": "运算符类型"
+          }
+        ]
+      }
+    ]
+  }

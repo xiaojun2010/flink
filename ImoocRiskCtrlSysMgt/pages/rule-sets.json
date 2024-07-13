@@ -1,0 +1,211 @@
+{
+  "type": "page",
+  "body": {
+    "type": "form",
+    "title": "",
+    "body": [
+    
+      {
+        "type": "grid",
+        "columns": [
+          {
+            "md": 0,
+            "columnClassName": "bg-blue-300",
+            "body": [
+              {
+                "type": "plain",
+                "text": "规则组属性"
+              }
+            ]
+          },
+          
+          {
+            "type": "input-text",
+            "name": "rule_set_name",
+            "label": "规则组名称",
+            "placeholder": "规则组名称",
+            "required": true
+          },
+          {
+            "type": "input-text",
+            "name": "set_code",
+            "label": "规则组唯一标识",
+            "placeholder": "RULES_",
+            "required": true
+          },{}
+          
+        ]
+      },
+  
+      {
+        "type": "divider"
+      },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "md": 0,
+          "columnClassName": "bg-blue-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "规则添加"
+            }
+          ]
+        },
+        
+        {
+          "md": 9,
+          "type": "combo",
+          "name": "rs-combo",
+          "label": "单条规则 ( 最多5个 )",
+          "multiple": true,
+          "maxLength": 5,
+          "required": true,
+          "draggable": true,
+          "items": [
+            {
+              "type": "tpl",
+              "tpl": "编号 <%= this.index + 1%>.",
+              "className": "p-t-xs",
+              "mode": "inline"
+            },
+            {
+              "name": "rule_name",
+              "label": "规则名称: ",
+              "type": "select",
+              "options": [
+                {
+                  "label": "IP在最近1小时内注册账号数超过5次",
+                  "value": "m_login_seq"
+                },
+                {
+                  "label": "账号在最近3分钟内登录次数超过7次",
+                  "value": "m_login_fail_seq"
+                },
+                {
+                  "label": "用户在最近3天内修改过手机号码",
+                  "value": "m_order_seq"
+                },
+                {
+                  "label": "用户没有使用常用IP下单",
+                  "value": "m_phoneNo_edit_seq"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "type": "divider"
+    },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "columnClassName": "bg-blue-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "规则间逻辑"
+            }
+          ]
+        },
+        {
+          "type": "input-text",
+          "name": "logic_string",
+          "label": "多个规则的执行逻辑",
+          "placeholder": "样式: 编号1 && ( 编号2 || 编号3 )",
+          "required": true
+        },
+        {},{}
+        
+      ]
+    },
+
+    {
+      "type": "divider"
+    },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "columnClassName": "bg-red-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "( 规则组全部规则命中 ) 策略配置"
+            }
+          ]
+        },
+        {
+          "name": "activation",
+          "label": "执行策略 ( 多选 )",
+          "type": "select",
+          "required": true,
+          "multiple": true,
+          "value": [1],
+          "options": [
+            {
+              "label": "名单策略",
+              "value": 1
+            },
+            {
+              "label": "标注策略",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "name": "action",
+          "label": "策略动作 (多选)",
+          "type": "select",
+          "required": true,
+          "multiple": true,
+          "value": [4,1,8],
+          "options": [
+            {
+              "label": "发送邮件给运营部",
+              "value": 1
+            },
+            {
+              "label": "用户风险分数+1",
+              "value": 2
+            },
+            {
+              "label": "标注为可疑账号",
+              "value": 3
+            },
+            {
+              "label": "列入灰名单",
+              "value": 4
+            },
+            {
+              "label": "标注为机器账号",
+              "value": 5
+            },
+            {
+              "label": "标注为羊毛账号(团队)",
+              "value": 6
+            },
+            {
+              "label": "标注为羊毛账号(个人)",
+              "value": 7
+            },
+            {
+              "label": "写入风控告警日志",
+              "value": 8
+            }
+          ]
+        },
+        {}
+      ]
+    }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+    "type": "page",
+    "body": [
+                      
+      {
+        
+        "type": "crud",
+        "title": "",
+        "data": {
+          "rows" : [
+            {
+              "id": 1,
+              "action_name": "发送邮件给运营部",
+              "action_model": "EmailAction",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 2,
+              "action_name": "用户风险分数+1",
+              "action_model": "RiskWeightAction",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 3,
+              "action_name": "标注为可疑账号",
+              "action_model": "MarkAction:suspicious",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 4,
+              "action_name": "标注为机器账号",
+              "action_model": "MarkAction:machine",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 5,
+              "action_name": "标注为羊毛账号(团队)",
+              "action_model": "MarkAction:econnoisseurs",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 6,
+              "action_name": "标注为羊毛账号(个人)",
+              "action_model": "MarkAction:econnoisseur",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 7,
+              "action_name": "列入灰名单",
+              "action_model": "InclusionAction:grey",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            },
+            {
+              "id": 8,
+              "action_name": "写入风控告警日志",
+              "action_model": "WarnAlertAction",
+              "model_package": "com.imooc.RiskCtrlSys.service.actions"
+            }
+
+            
+           
+          ]
+        },
+        "source": "$rows",
+        "columnsTogglable": false,
+        "rowClassNameExpr": "<%= data.id == 1 ? 'bg-green-100' : '' %>",
+
+        "columns": [
+          {
+            "name": "id",
+            "label": "序号"
+          },
+          {
+            "name": "action_name",
+            "label": "动作名称"
+          },
+          {
+            "name": "action_model",
+            "label": "映射模型 ( 格式：类:构造函数参数 )"
+          },
+          {
+            "name": "model_package",
+            "label": "模型包路径"
+          }
+          
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,362 @@
+{
+  "type": "page",
+  "body": {
+    "type": "form",
+    "title": "",
+    "mode": "horizontal",
+    "body": [
+      
+      {
+        "type": "select",
+        "name": "metric_sign",
+        "label": "指标名称",
+        "placeholder": "指标名称",
+        "required": true,
+        "value": "11",
+        "options": [
+          {
+            "label": "最近1小时内同一地区注册账号数",
+            "value": "m_login_seq"
+          },
+          {
+            "label": "账号在最近3分钟内登录次数",
+            "value": "m_login_fail_seq"
+          },
+          {
+            "label": "用户在最近3天内修改手机号码次数",
+            "value": "m_order_seq"
+          },
+          {
+            "label": "用户在最近3天内行为操作路径",
+            "value": "1"
+          },
+          {
+            "label": "用户在最近10天登录次数",
+            "value": "2"
+          },
+          {
+            "label": "用户在促销活动是否登录",
+            "value": "3"
+          },
+          {
+            "label": "用户使用常用IP下单",
+            "value": "4"
+          },
+          {
+            "label": "账号券领取的数量",
+            "value": "5"
+          },
+          {
+            "label": "券领取的用户在最近1个月的IP更换次数",
+            "value": "6"
+          },
+          {
+            "label": "使用券下单的用户的行为路径",
+            "value": "7"
+          },
+          {
+            "label": "用户商品复购次数",
+            "value": "8"
+          },
+          {
+            "label": "用户购买商品类别数量",
+            "value": "9"
+          },
+          {
+            "label": "用户购买商品价格区间数量",
+            "value": "11"
+          },
+          {
+            "label": "用户购买商品价格区间数量",
+            "value": "12"
+          },
+          {
+            "label": "用户购买商品交易时间间隔",
+            "value": "13"
+          },
+          {
+            "label": "用户优惠券领取和注册时间的时间间隔",
+            "value": "14"
+          },
+          {
+            "label": "等级为2以上的用户各行为之间时间间隔",
+            "value": "15"
+          },
+          {
+            "label": "等级为2以上的用户浏览行为的停留时间",
+            "value": "16"
+          }
+          
+        ]
+      },
+     
+
+      {
+        "type": "combo",
+        "name": "flink_keyby",
+        "label": "Flink分组(KeyBy)",
+        "multiple": true,
+        "maxLength": 5,
+        "required": true,
+        "items": [
+          {
+            "type": "tpl",
+            "tpl": "字段 <%= this.index + 1%>.",
+            "className": "p-t-xs",
+            "mode": "inline"
+          },
+          {
+            "name": "left-var",
+            "label": "",
+            "placeholder": "请选择字段",
+            "type": "select",
+            "options": [
+              {
+                "label": "user_id_int",
+                "value": "user_id_int"
+              },
+              {
+                "label": "event_time",
+                "value": "event_time"
+              },
+              {
+                "label": "event_target_name",
+                "value": "event_target_name"
+              },
+              {
+                "label": "event_name",
+                "value": "event_name"
+              },
+              {
+                "label": "event_behavior_name",
+                "value": "event_behavior_name"
+              }
+            ]
+          }
+        ]
+      },
+
+
+      {
+        "type": "combo",
+        "name": "flink_filter",
+        "label": "Flink筛选 (Filter)",
+        "multiple": true,
+        "maxLength": 5,
+        "required": true,
+        "items": [
+          {
+            "type": "tpl",
+            "tpl": "字段 <%= this.index + 1%>.",
+            "className": "p-t-xs",
+            "mode": "inline"
+          },
+          {
+            "name": "left-var",
+            "label": "",
+            "placeholder": "请选择字段",
+            "type": "select",
+            "options": [
+              {
+                "label": "user_id_int",
+                "value": "user_id_int"
+              },
+              {
+                "label": "event_time",
+                "value": "event_time"
+              },
+              {
+                "label": "event_target_name",
+                "value": "event_target_name"
+              },
+              {
+                "label": "event_name",
+                "value": "event_name"
+              },
+              {
+                "label": "event_behavior_name",
+                "value": "event_behavior_name"
+              }
+            ]
+          }
+        ]
+      },
+     
+      
+      {
+        "type": "select",
+        "name": "window_type",
+        "label": "Flink窗口类型",
+        "required": true,
+        "value": "sliding",
+        "options": [
+          {
+            "label": "滑动窗口 (Sliding Windows)",
+            "value": "sliding"
+          },
+          {
+            "label": "滚动窗口 (Tumbling Windows)",
+            "value": "tumbling"
+          },
+          {
+            "label": "会话窗口 (Session Windows)",
+            "value": "session"
+          },
+          {
+            "label": "全局窗口 (Global Windows)",
+            "value": "global"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "window_size",
+        "label": "Flink窗口大小(秒)",
+        "placeholder": "窗口大小(秒)",
+        "required": true,
+        "value": "3600",
+        "options": [
+          {
+            "label": "3600 (1h)",
+            "value": "3600"
+          },
+          {
+            "label": "7200 (2h)",
+            "value": "7200"
+          },
+          {
+            "label": "10800 (3h)",
+            "value": "10800"
+          },
+          {
+            "label": "14400 (4h)",
+            "value": "14400"
+          },
+          {
+            "label": "16800 (5h)",
+            "value": "16800"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "window_step",
+        "label": "Flink窗口步长(秒)",
+        "placeholder": "窗口步长(秒)",
+        "required": true,
+        "value": "60",
+        "options": [
+          {
+            "label": "60 (1min)",
+            "value": "60"
+          },
+          {
+            "label": "120 (2min)",
+            "value": "120"
+          },
+          {
+            "label": "180 (3min)",
+            "value": "180"
+          },
+          {
+            "label": "240 (4min)",
+            "value": "240"
+          },
+          {
+            "label": "300 (5min)",
+            "value": "300"
+          }
+        ]
+      },
+     
+      {
+        "type": "select",
+        "name": "flink_watermark",
+        "label": "Flink 水印 (watermark) 时间字段",
+        "required": true,
+        "value": "event_time",
+        "options": [
+          {
+            "label": "event_time",
+            "value": "event_time"
+          }
+        
+        ]
+      },
+      {
+        "type": "combo",
+        "name": "aggregation",
+        "label": "Flink聚合计算(Aggregation)",
+        "multiple": true,
+        "maxLength": 5,
+        "required": true,
+        "items": [
+          {
+            "type": "tpl",
+            "tpl": "字段 <%= this.index + 1%>.",
+            "className": "p-t-xs",
+            "mode": "inline"
+          },
+          {
+            "name": "left-var",
+            "label": "",
+            "placeholder": "请选择字段",
+            "type": "select",
+            "options": [
+              {
+                "label": "user_id_int",
+                "value": "user_id_int"
+              },
+              {
+                "label": "event_time",
+                "value": "event_time"
+              },
+              {
+                "label": "event_target_name",
+                "value": "event_target_name"
+              },
+              {
+                "label": "event_name",
+                "value": "event_name"
+              },
+              {
+                "label": "event_behavior_name",
+                "value": "event_behavior_name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "operate",
+        "label": "聚合计算模型",
+        "required": true,
+        "value": "count",
+        "options": [
+          {
+            "label": "总和 (sum)",
+            "value": "sum"
+          },
+          {
+            "label": "总数 (count)",
+            "value": "count"
+          },
+          {
+            "label": "行为序列 (behavier_seq)",
+            "value": "behavier_seq"
+          },
+          {
+            "label": "固定 (static)",
+            "value": "static"
+          },
+          {
+            "label": "是否 (boole)",
+            "value": "boole"
+          }
+        ]
+      }
+     
+    ]
+  }
+}

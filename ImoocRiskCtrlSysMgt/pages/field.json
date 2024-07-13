@@ -1,0 +1,53 @@
+{
+    "type": "page",
+    "body": [
+                      
+      {
+        
+        "type": "crud",
+        "title": "",
+        "data": {
+          "rows" : [
+            {
+              "id": 1,
+              "name": "profile_ip",
+              "kafka": "event:profile:ip"
+            },
+            {
+              "id": 2,
+              "name": "user_id",
+              "kafka": "event:user_id"
+            },
+            {
+              "id": 3,
+              "name": "behavier_order",
+              "kafka": "event:behavier:order"
+            },
+            {
+              "id": 4,
+              "name": "behavier_user_profile_modify",
+              "kafka": "event:behavier:user_profile_modify"
+            }
+          ]
+        },
+        "source": "$rows",
+        "columnsTogglable": false,
+        "rowClassNameExpr": "<%= data.id == 1 ? 'bg-green-100' : '' %>",
+
+        "columns": [
+          {
+            "name": "id",
+            "label": "序号"
+          },
+          {
+            "name": "name",
+            "label": "字段名称"
+          },
+          {
+            "name": "kafka",
+            "label": "kafka字段映射"
+          }
+        ]
+      }
+    ]
+  }

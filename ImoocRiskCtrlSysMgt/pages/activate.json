@@ -1,0 +1,45 @@
+{
+    "type": "page",
+    "body": [
+                      
+      {
+        
+        "type": "crud",
+        "title": "",
+        "data": {
+          "rows" : [
+            {
+              "id": 1,
+              "activation_name": "名单策略",
+              "actions": "抄送邮件给运营部,写入风控告警日志,列入灰名单"
+            },
+            {
+              "id": 2,
+              "activation_name": "标注策略",
+              "actions": "抄送邮件给运营部,写入风控告警日志,用户风险分数+1,标注为可疑账号,标注为机器账号,标注为羊毛账号(团队),标注为羊毛账号(个人)"
+            }
+           
+          ]
+        },
+        "source": "$rows",
+        "columnsTogglable": false,
+        "rowClassNameExpr": "<%= data.id == 1 ? 'bg-green-100' : '' %>",
+
+        "columns": [
+          {
+            "name": "id",
+            "label": "序号"
+          },
+          {
+            "name": "activation_name",
+            "label": "策略名称"
+          },
+          {
+            "name": "actions",
+            "label": "策略动作"
+          }
+          
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,487 @@
+{
+  "type": "page",
+  "body": {
+    "type": "form",
+    "title": "",
+    "body": [
+      {
+        "type": "grid",
+        "columns": [
+          {
+            "columnClassName": "bg-green-300",
+            "body": [
+              {
+                "type": "plain",
+                "text": "基础属性"
+              }
+            ]
+          },
+      {
+        "type": "input-text",
+        "name": "rule_name",
+        "label": "规则名称",
+        "placeholder": "规则名称",
+        "required": true
+      },
+      {
+        "type": "select",
+        "name": "is_enable",
+        "label": "规则状态",
+        "required": true,
+        "value": "启用",
+        "options": [
+          {
+            "label": "启用",
+            "value": "启用"
+          },
+          {
+            "label": "停用",
+            "value": "停用"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "name": "rule_type",
+        "label": "规则类型",
+        "required": true,
+        "value": "统计规则",
+        "options": [
+          {
+            "label": "静态规则",
+            "value": "静态规则"
+          },
+          {
+            "label": "统计规则",
+            "value": "统计规则"
+          },
+          {
+            "label": "关联规则",
+            "value": "关联规则"
+          },
+          {
+            "label": "行为规则",
+            "value": "行为规则"
+          }
+        ]
+      }
+    ]},
+
+    {
+      "type": "divider"
+    },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "columnClassName": "bg-green-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "基础属性"
+            }
+          ]
+        },
+    {
+      "type": "input-text",
+      "name": "rule_code",
+      "label": "规则唯一标识",
+      "placeholder": "RULE_",
+      "required": true
+    },
+    
+    {
+      "type": "input-text",
+      "name": "version",
+      "label": "规则版本",
+      "placeholder": "1.0",
+      "required": true
+    },{}
+    
+  ]},
+
+  {
+    "type": "divider"
+  },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "columnClassName": "bg-green-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "基础属性"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "name": "scene",
+          "label": "风控场景",
+          "required": true,
+          "value": "SCEN_COUPON",
+          "options": [
+          
+            {
+              "label": "优惠券场景",
+              "value": "SCEN_COUPON"
+            }
+          ]
+        },
+        
+        {
+          "type": "select",
+          "name": "event",
+          "label": "行为事件 (多选)",
+          "required": true,
+          "multiple": true,
+          "value": ["login_success","coupons_use","browse"],
+          "options": [
+            {
+              "label": "登录事件",
+              "value": "login_success"
+            },
+            {
+              "label": "登录失败事件",
+              "value": "login_fail"
+            },
+            {
+              "label": "下单事件",
+              "value": "order"
+            },
+           
+            {
+              "label": "用户信息修改事件",
+              "value": "user_profile_modify"
+            },
+            {
+              "label": "优惠券领取事件",
+              "value": "coupons_receive"
+            },
+            {
+              "label": "优惠券使用事件",
+              "value": "coupons_use"
+            },
+            {
+              "label": "发表评论事件",
+              "value": "comment"
+            },
+            {
+              "label": "商品收藏事件",
+              "value": "favorites"
+            },
+            {
+              "label": "浏览事件",
+              "value": "browse"
+            },
+            {
+              "label": "加入购物车事件",
+              "value": "cart_add"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "type": "divider"
+    },
+
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "md": 0,
+          "columnClassName": "bg-blue-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "条件配置"
+            }
+          ]
+        },
+        
+        {
+          "md": 9,
+          "type": "combo",
+          "name": "rs-combo",
+          "label": "条件表达式 ( 最多3个 )",
+          "multiple": true,
+          "maxLength": 3,
+          "required": true,
+          "draggable": true,
+          "items": [
+            {
+              "type": "tpl",
+              "tpl": "编号 <%= this.index + 1%>.",
+              "className": "p-t-xs",
+              "mode": "inline"
+            },
+            {
+              "name": "metric",
+              "label": "指标: ",
+              "type": "select",
+              "overlay": {
+                "width": "25%",
+                "align": "left"
+              },
+              "options": [
+                {
+                  "label": "最近1小时内同一地区注册账号数量",
+                  "value": "m_login_seq"
+                },
+                {
+                  "label": "账号在最近3分钟内登录次数",
+                  "value": "m_login_fail_seq"
+                },
+                {
+                  "label": "用户在最近3天内修改用户信息次数",
+                  "value": "m_order_seq"
+                },
+                {
+                  "label": "用户在最近3天内行为事件数量",
+                  "value": "1"
+                },
+                {
+                  "label": "用户在最近10天登录次数",
+                  "value": "2"
+                },
+                {
+                  "label": "用户在促销活动是否登录",
+                  "value": "3"
+                },
+                {
+                  "label": "用户使用常用IP下单",
+                  "value": "4"
+                },
+                {
+                  "label": "账号券领取的数量",
+                  "value": "5"
+                },
+                {
+                  "label": "券领取的用户在最近1个月的IP更换次数",
+                  "value": "6"
+                },
+                {
+                  "label": "使用券下单的用户的行为路径",
+                  "value": "7"
+                },
+                {
+                  "label": "用户商品复购次数",
+                  "value": "8"
+                },
+                {
+                  "label": "用户购买商品类别数量",
+                  "value": "9"
+                },
+                {
+                  "label": "用户购买商品价格区间数量",
+                  "value": "11"
+                },
+                {
+                  "label": "用户购买的商品各个价格区间的数量",
+                  "value": "12"
+                },
+                {
+                  "label": "用户购买商品交易的时间间隔",
+                  "value": "13"
+                },
+                {
+                  "label": "用户优惠券领取和注册时间的时间间隔",
+                  "value": "14"
+                },
+                {
+                  "label": "等级为2以上的用户各行为之间时间间隔",
+                  "value": "15"
+                },
+                {
+                  "label": "等级为2以上的用户浏览行为的平均停留时间",
+                  "value": "16"
+                }
+                
+              ]
+            },
+            {
+              "name": "operator",
+              "label": "运算符: ",
+              "type": "select",
+              "value": "gl",
+              "options": [
+                
+                {
+                  "label": "等于 =",
+                  "value": "equal"
+                },
+                {
+                  "label": "大于 >",
+                  "value": "gl"
+                },
+                {
+                  "label": "小于 <",
+                  "value": "ql"
+                },
+                {
+                  "label": "大于等于 >=",
+                  "value": "glt"
+                },
+                {
+                  "label": "小于等于 <=",
+                  "value": "qlt"
+                },
+                {
+                  "label": "不等于 !=",
+                  "value": "neq"
+                }
+              ]
+            },
+            {
+              "name": "threshold",
+              "label": "阈值: ",
+              "type": "input-text",
+              "placeholder": "阈值"
+            },
+            {
+              "name": "threshold_type",
+              "label": "阈值类型: ",
+              "type": "select",
+              "value": "数值",
+              "options": [
+                
+                {
+                  "label": "数值",
+                  "value": "数值"
+                },
+                {
+                  "label": "布尔值",
+                  "value": "布尔值"
+                },
+                {
+                  "label": "行为序列",
+                  "value": "行为序列"
+                }
+                
+              ]
+            }
+          ]
+        },
+        {},{}
+      ]
+    },
+
+    {
+      "type": "divider"
+    },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "columnClassName": "bg-blue-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "条件配置"
+            }
+          ]
+        },
+        {
+          "type": "input-text",
+          "name": "logic_string",
+          "label": "多个条件的执行逻辑",
+          "placeholder": "样式: 编号1 && ( 编号2 || 编号3 )",
+          "required": true
+        },
+        {},{}
+      ]
+    },
+
+
+    {
+      "type": "divider"
+    },
+
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "columnClassName": "bg-red-300",
+          "body": [
+            {
+              "type": "plain",
+              "text": "( 规则命中 ) 策略配置"
+            }
+          ]
+        },
+        {
+          "name": "activation",
+          "label": "执行策略 ( 多选 )",
+          "type": "select",
+          "required": true,
+          "multiple": true,
+          "value": [2],
+          "options": [
+            {
+              "label": "名单策略",
+              "value": 1
+            },
+            {
+              "label": "标注策略",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "name": "action",
+          "label": "策略动作 (多选)",
+          "type": "select",
+          "required": true,
+          "multiple": true,
+          "value": [1,7],
+          "options": [
+            {
+              "label": "发送邮件给运营部",
+              "value": 1
+            },
+            {
+              "label": "用户风险分数+1",
+              "value": 2
+            },
+            {
+              "label": "标注为可疑账号",
+              "value": 3
+            },
+            {
+              "label": "列入灰名单",
+              "value": 4
+            },
+            {
+              "label": "标注为机器账号",
+              "value": 5
+            },
+            {
+              "label": "标注为羊毛账号(团队)",
+              "value": 6
+            },
+            {
+              "label": "标注为羊毛账号(个人)",
+              "value": 7
+            },
+            {
+              "label": "写入风控告警日志",
+              "value": 8
+            }
+          ]
+        },
+        {}
+      ]
+    }
+
+     
+      
+    ]
+  }
+}

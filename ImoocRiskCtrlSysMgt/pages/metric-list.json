@@ -1,0 +1,229 @@
+{
+  "type": "page",
+  "body": {
+    
+        "type": "crud",
+        
+        "data": {
+          "rows": [
+            {
+              "id": 1,
+              "code": "最近1小时内同一地区注册账号数量",
+              "main_dim": "event_name",
+              "keyby": "event_context:device:area",
+              "filter": "1|event_name::rigster",
+              "size": "3600",
+              "step": "60",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 2,
+              "code": "账号在最近5分钟内登录次数",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::login_success",
+              "size": "60",
+              "step": "5",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 3,
+              "code": "用户在最近3天内修改用户信息次数",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::user_profile_modify",
+              "size": "86400",
+              "step": "86400",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 4,
+              "code": "用户在最近3天内除了修改用户信息的行为事件数量",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "1|!event_name::user_profile_modify",
+              "size": "86400",
+              "step": "86400",
+              "agg": "clickhouse"
+            },
+            {
+              "id": 5,
+              "code": "用户在最近10天登录次数",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::login_success",
+              "size": "86400",
+              "step": "86400",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 6,
+              "code": "用户在促销活动是否登录",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "3|event_name::login_success&&event_name::coupons_use&&event_name::coupons_receive",
+              "size": "86400",
+              "step": "86400",
+              "agg": "boolean"
+            },
+            {
+              "id": 7,
+              "code": "用户使用常用IP下单",
+              "main_dim": "event_context:device:ip",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::order",
+              "size": "0",
+              "step": "0",
+              "agg": "boolean"
+            },
+            {
+              "id": 8,
+              "code": "用户券领取的数量",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::coupons_receive",
+              "size": "0",
+              "step": "0",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 9,
+              "code": "券领取的用户在最近1个月的IP更换次数",
+              "main_dim": "event_context:device:ip",
+              "keyby": "user_id_int,",
+              "filter": "1|event_name::coupons_receive",
+              "size": "86400",
+              "step": "86400",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 10,
+              "code": "使用券下单的用户的行为路径",
+              "main_dim": "event_name",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::coupons_use",
+              "size": "0",
+              "step": "0",
+              "agg": "clickhouse"
+            },
+            {
+              "id": 11,
+              "code": "用户商品复购次数",
+              "main_dim": "event_name",
+              "keyby": "user_id_int, event_target_name",
+              "filter": "1|event_name::pay",
+              "size": "0",
+              "step": "0",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 12,
+              "code": "用户购买商品类别数量",
+              "main_dim": "event_name",
+              "keyby": "user_id_int, event_target_name",
+              "filter": "1|event_name::pay",
+              "size": "0",
+              "step": "0",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 13,
+              "code": "用户购买的商品价格区间",
+              "main_dim": "event_context:product:price",
+              "keyby": "user_id_int, event_target_name",
+              "filter": "1|event_name::pay",
+              "size": "0",
+              "step": "0",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 14,
+              "code": "用户购买的商品各个价格区间的数量",
+              "main_dim": "event_context:product:price",
+              "keyby": "user_id_int, event_target_name",
+              "filter": "1|event_name::pay",
+              "size": "0",
+              "step": "0",
+              "agg": "总数 (count)"
+            },
+            {
+              "id": 15,
+              "code": "用户商品交易的时间间隔",
+              "main_dim": "event_time",
+              "keyby": "user_id_int",
+              "filter": "1|event_name::pay",
+              "size": "0",
+              "step": "0",
+              "agg": "绝对值 (abs)"
+            },
+            {
+              "id": 16,
+              "code": "用户优惠券领取和注册时间的时间间隔",
+              "main_dim": "event_time",
+              "keyby": "user_id_int",
+              "filter": "2|event_namecoupons_receive&&event_name:register",
+              "size": "0",
+              "step": "0",
+              "agg": "绝对值 (abs)"
+            },
+            {
+              "id": 17,
+              "code": "用户等级为L2以上的用户各行为之间时间间隔",
+              "main_dim": "event_time",
+              "keyby": "user_id_int",
+              "filter": "1|event_context:profile:grade::2",
+              "size": "0",
+              "step": "0",
+              "agg": "绝对值 (abs)"
+            },
+            {
+              "id": 18,
+              "code": "用户等级为L2以上的用户浏览行为的平均停留时间",
+              "main_dim": "event_time",
+              "keyby": "user_id_int",
+              "filter": "2|event_context:profile:grade::2&&event_name::browser",
+              "size": "0",
+              "step": "0",
+              "agg": "绝对值 (abs)"
+            }
+          ]
+        },
+        "source": "$rows",
+        "columnsTogglable": false,
+        "rowClassNameExpr": "<%= data.id == 1 ? 'bg-green-100' : '' %>",
+        "columns": [
+          {
+            "name": "id",
+            "label": "序号"
+          },
+          {
+            "name": "code",
+            "label": "指标名称"
+          },
+          {
+            "name": "main_dim",
+            "label": "主维度 (聚合计算字段)"
+          },
+          {
+            "name": "flink_keyby",
+            "label": "Flink分组 (,隔开)"
+          },
+          {
+            "name": "flink_filter",
+            "label": "Flink筛选 (数量|字段::值)"
+          },
+          {
+            "name": "window_size",
+            "label": "窗口大小(s)"
+          },
+          {
+            "name": "window_step",
+            "label": "窗口步长(s)"
+          },
+          {
+            "name": "aggregation",
+            "label": "聚合计算"
+          }
+        ]
+      }
+}

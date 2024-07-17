@@ -198,7 +198,7 @@ public class MetricWithKafka {
 
         /* **********************
          * 注意：
-         *
+         * Flink 不同版本生成水印的方法不一样
          * Flink 1.12之后建议使用
          * assignTimestampsAndWatermarks(WatermarkStrategy)的方式生成watermark,
          *

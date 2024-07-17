@@ -5,6 +5,7 @@ import com.imooc.RiskCtrlSys.flink.kafka.ImoocDeserializationSchema;
 import com.imooc.RiskCtrlSys.model.EventPO;
 import com.imooc.RiskCtrlSys.model.KafkaMessagePO;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
@@ -128,7 +129,7 @@ public class KafkaUtil {
                  *
                  * *********************/
                 .setDeserializer(KafkaRecordDeserializationSchema.of(new ImoocDeserializationSchema()))
-                //.setValueOnlyDeserializer(new SimpleStringSchema())
+//                .setValueOnlyDeserializer(new SimpleStringSchema())
                 .build();
     }
 

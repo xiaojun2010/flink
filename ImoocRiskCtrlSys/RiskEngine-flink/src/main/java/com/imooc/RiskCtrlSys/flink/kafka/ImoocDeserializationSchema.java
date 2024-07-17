@@ -42,6 +42,7 @@ public class ImoocDeserializationSchema implements KafkaDeserializationSchema<Ka
 
     /**
      * zxj
+     * kafka 都是二进制数据，需要反系列化
      * description: 自定义反序列化的主要逻辑
      * @param consumerRecord:
      * @return java.lang.Object

@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * zxj
+ * author: Imooc
  * description: Springboot 启动类
  * date: 2023
  */

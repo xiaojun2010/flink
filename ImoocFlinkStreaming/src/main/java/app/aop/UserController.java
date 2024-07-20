@@ -3,7 +3,7 @@ package app.aop;
 import org.springframework.stereotype.Controller;
 
 /**
- * zxj
+ * author: Imooc
  * description: AOP Demo
  * date: 2023
  */
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 public class UserController {
 
     /**
-     * zxj
+     * author: Imooc
      * description: 获取 AOP 通知
      * @param :
      * @return void
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 获取指定注解修饰的 AOP 通知
      * @param :
      * @return void

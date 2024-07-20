@@ -8,7 +8,7 @@ import org.apache.flink.util.Collector;
 import java.util.Arrays;
 
 /**
- * zxj
+ * author: Imooc
  * description: 基于状态(KeyedState)计算实现词频统计
  * date: 2023
  */

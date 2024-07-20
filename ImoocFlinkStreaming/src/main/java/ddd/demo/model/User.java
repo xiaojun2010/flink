@@ -1,7 +1,7 @@
 package ddd.demo.model;
 
 /**
- * zxj
+ * author: Imooc
  * description: ddd 领域模型
  * date: 2023
  */

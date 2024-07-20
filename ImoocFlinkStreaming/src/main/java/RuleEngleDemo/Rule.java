@@ -1,7 +1,7 @@
 package RuleEngleDemo;
 
 /**
- * zxj
+ * author: Imooc
  * description: 单个规则对象
  * date: 2023
  */
@@ -9,7 +9,7 @@ package RuleEngleDemo;
 public class Rule {
 
     /**
-     * zxj
+     * author: Imooc
      * description: 规则计算
      * @param ruleIndex:
      * @return boolean
@@ -21,7 +21,7 @@ public class Rule {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 策略执行
      * @param b:
      * @return RuleEngleDemo.RuleTactics

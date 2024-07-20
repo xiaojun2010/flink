@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 
 /**
- * zxj
+ * author: Imooc
  * description: 通过 DataStream Api 和 Lambda表达式，以流计算的方式进行词频统计
  * date: 2023
  */
@@ -76,7 +76,7 @@ public class WordCountByStreamWithLambda {
             String[] words = input.split(" ");
             // 循环这个数组，并将数组内的单词一一输出
             for(String word:words) {
-                // 通过Collector对象的collect方法输出Sp
+                // 通过Collector对象的collect方法输出
                 output.collect(word);
             }
         })

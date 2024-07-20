@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * zxj
+ * author: Imooc
  * description: Cep demo(伪代码)
  * date: 2023
  */
@@ -77,7 +77,7 @@ public class CepDemo {
 
        DataStream patternResult = patternStream.select(new PatternSelectFunction<String, Object>() {
             /**
-             * zxj
+             * author: Imooc
              * description: TODO
              * @param map:  key: 指的是Pattern的名称。 value: 符合这个Pattern的数据
              * @return java.lang.Object

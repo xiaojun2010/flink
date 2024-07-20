@@ -24,7 +24,7 @@ import org.apache.flink.util.Collector;
  * TIME: 窗口类型
  * *********************/
 
-public class MetricWindowFunction implements WindowFunction<
+public class  MetricWindowFunction implements WindowFunction<
         //In
         Tuple2<EventPO,Double>,
         //OUT

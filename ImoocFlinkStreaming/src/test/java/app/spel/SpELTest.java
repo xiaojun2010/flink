@@ -8,7 +8,7 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 /**
- * zxj
+ * author: Imooc
  * description: SpEL 单元测试
  * date: 2023
  */
@@ -20,7 +20,7 @@ public class SpELTest {
     SpelModel spelModel;
 
     /**
-     * zxj
+     * author: Imooc
      * description: 测试 @value 执行的spel
      * @param :
      * @return void
@@ -32,7 +32,7 @@ public class SpELTest {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 测试 ExpressionParser 执行的 spel
      * @param :
      * @return void

@@ -3,7 +3,7 @@ package RuleEngleDemo;
 import java.util.List;
 
 /**
- * zxj
+ * author: Imooc
  * description: 风控规则执行对象
  * date: 2023
  */
@@ -11,7 +11,7 @@ import java.util.List;
 public class RuleExecution {
 
     /**
-     * zxj
+     * author: Imooc
      * description: 规则执行
      * @param rules: 规则组
      * @param indexes:  指标组

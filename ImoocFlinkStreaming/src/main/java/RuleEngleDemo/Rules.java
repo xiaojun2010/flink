@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * zxj
+ * author: Imooc
  * description: 规则组对象
  * date: 2023
  */
@@ -19,7 +19,7 @@ public class Rules {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 将规则对象添加到规则组里
      * @param rule:
      * @return void
@@ -30,7 +30,7 @@ public class Rules {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 获取规则组对象
      * @param :
      * @return java.util.List<RuleEngleDemo.Rule>

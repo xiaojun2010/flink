@@ -1,7 +1,7 @@
 package RuleEngleDemo;
 
 /**
- * zxj
+ * author: Imooc
  * description: 风控策略对象
  * date: 2023
  */

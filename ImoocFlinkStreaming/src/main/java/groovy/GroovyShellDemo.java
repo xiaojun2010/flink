@@ -5,7 +5,7 @@ import groovy.lang.GroovyShell;
 import groovy.lang.Script;
 
 /**
- * zxj
+ * author: Imooc
  * description: GroovyShell 运行 Groovy脚本
  * date: 2023
  */
@@ -15,74 +15,75 @@ import groovy.lang.Script;
  * 知识点：
  *
  * 1.
- * Groovy 是动态的，运行在JVM的脚本语言
- * Scala 运行在JVM的函数式语言
+ * Groovy 运行在JVM的脚本语言
  *
- * 所有.groovy文件会经过 groovyc 编译成class文件,
- * 对于JVM来说与Java编译后没有区别.
+ * Groovy和Java是无缝连接
+ * Java应用在运行时动态的集成Groovy脚本
+ *
  *
  * 2.
+ * Java应用在运行时集成Groovy的3种方式
+ * a. GroovyShell:
+ *    GroovyShell每一次执行时代码时会动态将代码编译成Java Class
+ *    在Java类中,使用Binding对象输入参数给表达式
+ *    缺点：性能较差
+ * b. GroovyScriptEngine:
+ *    优点：指定位置加载Groovy脚本，并且随着脚本变化而重新加载它们
+ * c. GroovyClassLoader:
+ *    是一个定制的类装载器, 负责解释加载Java类中用到的Groovy类
  *
+ * 3.
  * 编写 Groovy 代码的两种风格：
  * a. 脚本 (不定义和 .groovy 同名的 class )
  * b. 类 (定义 class, 所有代码在 class)
  *
- * 如果 .groovy 文件内部出现了和文件同名的类,
- * 则这个 .groovy 文件会被视作是"用 Groovy 方言编写的 Java 代码",
- * 不能用作脚本使用, 只能看作普通的类
- *
- * 在 .groovy 文件, 可以不声明任何类
- *
- * 3.
- * idea 要选择 Groovy Class
- * idea 要设置 Groovy目录为源码目录, 否则会找不到 Groovy类
- *
  * 4.
- * Java应用在运行时集成Groovy的三种方式
- * a. GroovyShell: 在Java类中,使用Binding对象输入参数给表达式
- * b. GroovyClassLoader : 是一个定制的类装载器, 负责解释加载Java类中用到的Groovy类
- * c. GroovyScriptEngine: 指定位置加载Groovy脚本，并且随着脚本变化而重新加载它们
+ * Groovy 编译器会将脚本编译为类
+ * 如果Groovy脚本文件里只有执行代码，没有定义任何类
+ * 编译器会生成一个Script的子类,
+ * 类名和脚本文件的文件名一样,
+ * 脚本的代码会被包含在一个名为run的方法中
  *
  * 5.
- * Groovy 的 property 和 field:
- * property: 对象的属性 如 A.name, 其实调用 A.getName() , 用于类的外部
- * field: 类的成员变量, 用于类的内部, 使用 this 访问
- *
- * Groovy 默认在类的外部, 以property的形式访问对象属性: A.name
- *
- * Groovy 定义property的条件是 类型+名字, 没有访问修饰符(public,private)
+ * 如果Groovy脚本文件有执行代码, 并且有定义类
+ * 生成对应的class文件,
+ * 脚本本身也会被编译成一个Script的子类
  *
  *
  * 6.
- * groovy property 可以在构造方法里初始化
+ * 如果 .groovy 文件内部出现了和文件同名的类,
+ * 则这个 .groovy 文件会被视作是"用 Groovy 语言编写的 Java 代码",
+ * 不能用作脚本使用, 只能看作普通的类
  *
- * 7.
- * groovy property 使用 final 修饰就不会生成 setter 方法,
- * 即 property 只读, 即使在类的内部, 也是只读
+ * 7。
+ * JVM实现类的动态加载的底层逻辑
+ * 一个类被首次加载后，会长期留驻JVM，直到JVM退出，这个说法是正确的吗？
+ * 答案, 是正确的。但是有一个前提，这个类的加载是符合双亲委派模型
+ * 双亲委派模型：所有的类都尽可能由顶层的类加载器加载，保证了加载的类的唯一性
+ * 由JVM自带的类加载器所加载的类，在JVM的生命周期中，始终不会被卸载
  *
- * 8. Groovy 变量作用域：
- * a. 本地作用域
- * b. 绑定作用域
- *
- * 9. Groovy 变量定义 2 种方式：
- * a. 直接声明：相当于 public 共有变量, 即绑定作用域
- * b. 使用 def 声明：相当于 private 私有变量, 即本地作用域
- *
+ * 自定义类加载器,所加载的类, 打破双亲委派模型,不要委托给父类加载器， 就能够实现类的动态加载
  *
  *
- * *********************/
+ * 8.
+ * Groovy的动态加载脚本的底层逻辑
+ * 原因：打破双亲委派模型
+ * 底层逻辑： GroovyClassLoader打破双亲委派模型, 从而实现了Groovy能够动态加载Class的功能
+ *
+ * 9.
+ * GroovyShell的evaluate(),调用GroovyClassLoader中的parseClass(),
+ * GroovyScriptEngine的run(),调用GroovyClassLoader中的parseClass(),
+ *
+ */
 
 public class GroovyShellDemo {
     public static void main(String[] args) {
 
 
-
         // groovy 脚本内容
-        String groovy_script = "println 'groovy '; 'name = ' + name;";
-        Integer imoocNum = 1;
+        String groovy_script = "println 'groovy ';println 'name = ' + name;";
         //初始化 Binding
         Binding binding = new Binding();
-
 
         /* ***********
          *
@@ -90,29 +91,14 @@ public class GroovyShellDemo {
          *
          * ************/
 
-        //使用setProperty
-        binding.setProperty("imoocNum", imoocNum);
         //使用setVariable
         binding.setVariable("name", "imooc");
 
         //创建脚本对象
         GroovyShell shell = new GroovyShell(binding);
 
-        /* **********************
-         *
-         * 注意：
-         * groovyShell.evaluate()方法中会先parse脚本为Script对象。parse相对耗
-         *
-         * *********************/
-        //执行脚本方案1, 得到返回值
-        shell.evaluate("imoocNum++;");
+        //执行脚本
         Object variableRes = shell.evaluate(groovy_script);
-        System.out.println(variableRes);
-        System.out.println(String.format("Property = %s", binding.getProperty("imoocNum")));
-
-        //执行脚本方案2
-        Script script = shell.parse(groovy_script);
-        System.out.println(script.run());
 
 
     }

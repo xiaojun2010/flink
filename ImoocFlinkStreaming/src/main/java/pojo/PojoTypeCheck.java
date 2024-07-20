@@ -3,7 +3,7 @@ package pojo;
 import org.apache.flink.api.java.typeutils.TypeExtractor;
 
 /**
- * zxj
+ * author: Imooc
  * description: 判断是否为Flink认可的POJO对象
  * date: 2023
  */

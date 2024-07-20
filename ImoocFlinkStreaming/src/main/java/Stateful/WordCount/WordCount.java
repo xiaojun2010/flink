@@ -1,7 +1,7 @@
 package Stateful.WordCount;
 
 /**
- * zxj
+ * author: Imooc
  * description: WordCount实体类
  * date: 2023
  */

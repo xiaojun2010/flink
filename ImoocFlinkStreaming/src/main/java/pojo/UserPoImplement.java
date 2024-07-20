@@ -1,7 +1,7 @@
 package pojo;
 
 /**
- * zxj
+ * author: Imooc
  * description: 实现了接口的POJO对象
  * date: 2023
  */

@@ -2,66 +2,55 @@ package groovy;
 
 import groovy.lang.GroovyClassLoader;
 import groovy.lang.GroovyObject;
+import groovy.lang.Script;
+import org.codehaus.groovy.control.CompilerConfiguration;
 
 import java.io.File;
 import java.io.IOException;
 
 /**
- * zxj
- * description: Java动态执行 Groove 代码
+ * author: Imooc
+ * description: Java通过类加载器调用 Groove 自定义类 (脚本文件形式)
  * date: 2023
  */
 
-/* **********************
- *
- *
- * 知识点：
- *
- * 1.
- * invokeMethod()
- * 第1个参数是脚本中的函数名称，
- * 第2个参数是为绑定的参数
- *
- * *********************/
 
 public class GroovyClassLoaderDemo {
-    public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
-        loadByFile();
-        loadByClass();
-    }
+        /* **********************
+         *
+         * 知识点：
+         *
+         * 1.
+         * 通过类加载器调用Groovy自定义类步骤
+         *
+         * a.实例化一个GroovyClassLoader的对象
+         * b.GroovyClassLoader 解析groovy脚本并生成一个Class对象
+         * c.实例化一个GroovyObject
+         * d.通过GroovyObject执行自定义类中的方法
+         *
+         *
+         */
 
-    /**
-     * zxj
-     * description: 通过类加载执行 Groovy代码
-     * @param :
-     * @return void
-     */
-    private static void loadByClass() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        // 这个GroovyClassLoader的父加载器是当前线程的类加载器
+        GroovyClassLoader groovyClassLoader = new GroovyClassLoader(
+                //当前线程的类加载器
+                Thread.currentThread().getContextClassLoader(),
+                new CompilerConfiguration()
+        );
 
-        GroovyObject groovyObject =
-                (GroovyObject) GroovyClassLoaderDemo.class
-                        .getClassLoader()
-                        .loadClass("ImoocClassGroovy")
-                        .newInstance();
+        //groovy脚本路径
+        File script = new File("src/main/groovy/scripts/ScriptEngine.groovy");
+
+        //通过GroovyClassLoader加载类
+        Class<?> groovyClass = groovyClassLoader.parseClass(script);
+
+        //获取ScriptEngine对象实例
+        GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
+
+        //通过invoke调用实例方法
         groovyObject.invokeMethod("print",null);
 
-    }
-
-    /**
-     * zxj
-     * description: 通过文件路径执行 Groovy代码
-     * @param :
-     * @return void
-     */
-    private static void loadByFile() throws IOException, InstantiationException, IllegalAccessException {
-        File groovyFile = new File("src/main/groovy/Imooc.groovy");
-        GroovyClassLoader loader =  new GroovyClassLoader();
-        // 获得ImoocGroovy加载后的class
-        Class<?> groovyClass = loader.parseClass(groovyFile);
-        // 获得ImoocGroovy的实例
-        GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
-        // 反射调用printHello方法得到返回值
-        groovyObject.invokeMethod("printHello", null);
     }
 }

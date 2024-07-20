@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * zxj
+ * author: Imooc
  * description: 自定义注解 demo
  * date: 2023
  */

@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
- * zxj
+ * author: Imooc
  * description: 切面类
  * date: 2023
  */

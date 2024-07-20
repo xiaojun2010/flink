@@ -2,7 +2,6 @@ package BatchAndStream;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
-import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.configuration.Configuration;
@@ -15,7 +14,7 @@ import org.apache.flink.util.Collector;
 
 
 /**
- * zxj
+ * author: Imooc
  * description: 通过 DataStream Api，以批处理的方式进行词频统计~
  * date: 2023
  */
@@ -58,7 +57,7 @@ public class WordCountByBatchWithDataStreamApi {
 
         DataStream<String> wordsDS = lines.flatMap(new FlatMapFunction<String, String>() {
             /**
-             * zxj
+             * author: Imooc
              * description: 实现字符串切割
              * @param input: 输入
              * @param output:  输出 (Collector对象)
@@ -74,8 +73,7 @@ public class WordCountByBatchWithDataStreamApi {
                     output.collect(word);
                 }
             }
-        }).returns(Types.STRING)
-                ;
+        });
 
         /* ************************************
          * wordcount 第2步：对每个单词标记为 1 ( Tuple2<"hadoop",1> )
@@ -86,7 +84,7 @@ public class WordCountByBatchWithDataStreamApi {
 
         DataStream<Tuple2<String,Integer>> wordDS = wordsDS.map(new MapFunction<String, Tuple2<String,Integer>>() {
             /**
-             * zxj
+             * author: Imooc
              * description: 实现对每个单词标记为1
              * @param input:  输入
              * @return Tuple2<String,Integer>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * zxj
+ * author: Imooc
  * description: 指标组对象
  * date: 2023
  */
@@ -19,7 +19,7 @@ public class RuleIndexes {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 将指标对象添加到指标组里
      * @param ruleIndex:
      * @return void
@@ -29,7 +29,7 @@ public class RuleIndexes {
     }
 
     /**
-     * zxj
+     * author: Imooc
      * description: 获取指标组
      * @param :
      * @return java.util.List<RuleEngleDemo.Index>

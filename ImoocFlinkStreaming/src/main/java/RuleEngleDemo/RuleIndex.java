@@ -1,7 +1,7 @@
 package RuleEngleDemo;
 
 /**
- * zxj
+ * author: Imooc
  * description: 单个指标对象
  * date: 2023
  */

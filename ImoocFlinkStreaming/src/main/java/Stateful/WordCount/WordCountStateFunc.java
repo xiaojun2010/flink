@@ -8,7 +8,7 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.util.Collector;
 
 /**
- * zxj
+ * author: Imooc
  * description: KeyedState计算
  * date: 2023
  */
@@ -46,7 +46,7 @@ public class WordCountStateFunc extends RichFlatMapFunction<WordCount,WordCount>
     private ValueState<WordCount> keyedState;
 
     /**
-     * zxj
+     * author: Imooc
      * description: 状态变量的初始化
      * @param parameters:
      * @return void
@@ -65,8 +65,8 @@ public class WordCountStateFunc extends RichFlatMapFunction<WordCount,WordCount>
                          * 知识点：
                          *
                          * Flink有自己的一套数据类型，包含了JAVA和Scala的所有数据类型
-                         * 这些数据类型都是TypeInformation 对象的子类。
-                         * TypeInformation 对象统一了所有数据类型的序列化实现
+                         * 这些数据类型都是TypeInformation对象的子类。
+                         * TypeInformation对象统一了所有数据类型的序列化实现
                          *
                          * *********************/
                         TypeInformation.of(WordCount.class)
@@ -77,7 +77,7 @@ public class WordCountStateFunc extends RichFlatMapFunction<WordCount,WordCount>
 
 
     /**
-     * zxj
+     * author: Imooc
      * description: keyedState计算逻辑
      * @param input:
      * @param output:
@@ -86,7 +86,7 @@ public class WordCountStateFunc extends RichFlatMapFunction<WordCount,WordCount>
     @Override
     public void flatMap(WordCount input, Collector<WordCount> output) throws Exception {
 
-        //读取状态（旧的状态）
+        //读取状态
         WordCount lastKeyedState = keyedState.value();
 
         //更新状态

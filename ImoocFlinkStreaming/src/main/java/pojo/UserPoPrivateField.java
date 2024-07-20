@@ -1,7 +1,7 @@
 package pojo;
 
 /**
- * zxj
+ * author: Imooc
  * description: 具有私有成员变量的POJO对象
  * date: 2023
  */

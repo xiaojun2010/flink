@@ -24,5 +24,6 @@ public class GroovyScriptEngineDemo {
         //执行脚本
         engine.run("engine.groovy",binding);
 
+
     }
 }

@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 
 
-public class GroovyClassLoaderDemo {
+public class  GroovyClassLoaderDemo {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
 
         /* **********************

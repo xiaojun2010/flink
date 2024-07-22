@@ -15,12 +15,16 @@ import java.util.List;
  * zxj
  * description: 风控规则的 KeyedBroadcastProcessFunction
  * date: 2023
+ * Integer - 分组key （user_id）
+ * EventPO - 行为事件流的对象，事件 po 对象
+ * RulesPO - 广播流，规则组的 po 对象
+ * EventPO - 输出的数据类型
  */
 
 public class RulesKeyedBroadcastProcessFunc
-        extends KeyedBroadcastProcessFunction<Integer,EventPO,RulesPO,EventPO> {
+        extends KeyedBroadcastProcessFunction<Integer, EventPO, RulesPO, EventPO> {
 
-    //规则流广播状态描述器
+    //规则流广播状态描述器 （针对风控规则，MySQL 获取）
     private final MapStateDescriptor<String, RulesPO> stateDescriptor;
 
     //规则组唯一编码
@@ -35,6 +39,7 @@ public class RulesKeyedBroadcastProcessFunc
     /**
      * zxj
      * description: 处理非广播流的数据
+     *
      * @param eventPO:
      * @param readOnlyContext:
      * @param collector:
@@ -47,7 +52,7 @@ public class RulesKeyedBroadcastProcessFunc
             Collector<EventPO> collector) throws Exception {
 
         //都是只读操作
-        ReadOnlyBroadcastState<String,RulesPO> broadcastState =
+        ReadOnlyBroadcastState<String, RulesPO> broadcastState =
                 readOnlyContext.getBroadcastState(stateDescriptor);
 
 
@@ -55,7 +60,7 @@ public class RulesKeyedBroadcastProcessFunc
 
             //取出广播状态的 规则组POJO
             RulesPO rules = broadcastState.get(the_set_code);
-            if(rules != null) {
+            if (rules != null) {
                 eventPO.setRules(rules);
             }
 
@@ -69,6 +74,7 @@ public class RulesKeyedBroadcastProcessFunc
     /**
      * zxj
      * description: 处理广播流中的数据, 每次接收到广播流的每个记录都会调用
+     *
      * @param rulesPO:
      * @param context:
      * @param collector:
@@ -81,17 +87,17 @@ public class RulesKeyedBroadcastProcessFunc
             Collector<EventPO> collector) throws Exception {
 
         //获取广播状态
-        BroadcastState<String,RulesPO> broadcastState = context.getBroadcastState(stateDescriptor);
+        BroadcastState<String, RulesPO> broadcastState = context.getBroadcastState(stateDescriptor);
 
         //判断广播状态是否存在对应的规则组
         //规则组唯一编码
         String set_code = rulesPO.getSet_code();
         //取出状态里的规则组
         RulesPO rulesState = broadcastState.get(set_code);
-        if(rulesState == null) {
+        if (rulesState == null) {
             //如果不存在规则组, 则将当前规则组放到广播状态
-            broadcastState.put(set_code,rulesPO);
-        }else {
+            broadcastState.put(set_code, rulesPO);
+        } else {
             //规则
             List<SingleRulePO> rulesList = rulesPO.getRules();
             //状态里的规则
@@ -101,7 +107,7 @@ public class RulesKeyedBroadcastProcessFunc
             //
             rulesState.setRules(rulesListState);
             //更新广播状态
-            broadcastState.put(set_code,rulesState);
+            broadcastState.put(set_code, rulesState);
         }
 
     }

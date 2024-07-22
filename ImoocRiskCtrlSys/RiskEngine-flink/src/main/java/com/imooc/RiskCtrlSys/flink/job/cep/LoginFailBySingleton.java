@@ -13,6 +13,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
 /**
  * zxj
  * description: 基于个体模式检测最近1分钟内登录失败超过3次的用户
+ *              宽松近邻：允许在 这1分钟内登录失败行为事件之间斯可以出现其他类型的行为事件
  *              CEP模式：允许这3次登录失败事件之间出现其他行为事件
  * date: 2023
  */
@@ -34,7 +35,7 @@ public class LoginFailBySingleton {
         //生成模式 (规则/Pattern)
 
         Pattern.
-                <EventPO>begin("login_fail_first")
+                <EventPO>begin("login_fail_first") //个体模式
                 /* **********************
                  *
                  * 知识点：
@@ -50,11 +51,11 @@ public class LoginFailBySingleton {
                 .where(new SimpleCondition<EventPO>() {
                     @Override
                     public boolean filter(EventPO eventPO) throws Exception {
-                        return EventConstantUtil.LOGIN_FAIL.equals(eventPO.getEvent_name());
+                        return EventConstantUtil.LOGIN_FAIL.equals(eventPO.getEvent_name());//登录失败
                     }
                 })
-                .times(3)
-                .within(Time.seconds(60));
+                .times(3)//3次
+                .within(Time.seconds(60));//1分钟内
 
     }
 }

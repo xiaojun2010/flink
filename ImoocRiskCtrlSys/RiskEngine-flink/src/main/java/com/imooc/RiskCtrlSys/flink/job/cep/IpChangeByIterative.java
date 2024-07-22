@@ -62,7 +62,8 @@ public class IpChangeByIterative {
                 //使用宽松近邻,判断用户行为事件在15分钟内IP是否发生变化
                 .followedBy("next").where(new ChangeCondition())
                 //15分钟内IP发生变化次数超过5次
-                .times(3)
+//                .times(3)
+                .timesOrMore(3) //匹配次数超过3次
                 //满足条件的行为事件必须在最近15分钟内
                 .within(Time.seconds(900));
 
@@ -97,7 +98,7 @@ public class IpChangeByIterative {
          * select() 和 flatSelect() 的区别：
          * flatSelect() 参数是 PatternFlatSelectFunction 对象
          * select() 参数是 PatternSelectFunction 对象
-         * process() 参数是 PatternProcessFunction 对象
+         * process() 参数是 PatternProcessFunction 对象 (建议使用)
          *
          * flatSelect() 没有返回值, Collector.collect()
          * select() 有返回值

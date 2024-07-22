@@ -29,7 +29,7 @@ public class CepDemo {
         DataStream<String> dataStream = null;
 
         //生成KeyedStream
-        KeyedStream<String,Tuple> keyedStream = dataStream.keyBy("");
+        KeyedStream<String, Tuple> keyedStream = dataStream.keyBy("");
 
         //生成模式(规则) ( Pattern 对象)
 
@@ -41,14 +41,14 @@ public class CepDemo {
          * 2. 循环模式：能接收多个事件或1个事件, 单例模式 + 量词
          * *********************/
         //生成名叫 “login” 的单个Pattern
-        Pattern<String,String> pattern =
+        Pattern<String, String> pattern =
                 Pattern.<String>begin("login").where(new SimpleCondition<String>() {
                     @Override
                     public boolean filter(String s) throws Exception {
                         //Patter规则内容
                         return false;
                     }
-                }).times(3);
+                }).times(3); //出现 3 次
 
 
         /* **********************
@@ -63,19 +63,19 @@ public class CepDemo {
          * *********************/
 
         //生成了两个Patten所组成的Pattern序列，分别名叫 "login", "sale"
-        Pattern<String,String> patterns =
+        Pattern<String, String> patterns =
                 Pattern.<String>begin("login")//.where()
                         .followedBy("sale");//.where();
 
 
         //将 Pattern 应用于 KeyedStream， 生成 PatternStream 对象
 
-        PatternStream<String> patternStream= CEP.pattern(keyedStream,patterns);
+        PatternStream<String> patternStream = CEP.pattern(keyedStream, patterns);
 
 
         // 通过PatternStream 对象的 select() 方法, 将符合规则的数据提取
 
-       DataStream patternResult = patternStream.select(new PatternSelectFunction<String, Object>() {
+        DataStream patternResult = patternStream.select(new PatternSelectFunction<String, Object>() {
             /**
              * author: Imooc
              * description: TODO

@@ -13,8 +13,8 @@ import java.io.IOException;
 /**
  * zxj
  * description: 基于个体模式检测最近1分钟内登录失败超过3次的用户
- *              CEP模式：允许这3次登录失败事件之间出现其他行为事件
- *              使用 Groovy 脚本
+ * CEP模式：允许这3次登录失败事件之间出现其他行为事件
+ * 使用 Groovy 脚本
  * date: 2023
  */
 
@@ -59,7 +59,7 @@ public class LoginFailByGroovy {
          *
          * *********************/
 
-        Pattern<EventPO,?> pattern = (Pattern<EventPO,?>) GroovyUtil.groovyEval(clazz,method,null);
+        Pattern<EventPO, ?> pattern = (Pattern<EventPO, ?>) GroovyUtil.groovyEval(clazz, method, null);
 
     }
 }

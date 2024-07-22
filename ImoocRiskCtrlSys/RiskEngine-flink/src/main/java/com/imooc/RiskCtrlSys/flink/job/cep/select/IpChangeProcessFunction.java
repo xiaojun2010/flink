@@ -14,8 +14,15 @@ import java.util.Map;
  */
 
 public class IpChangeProcessFunction extends PatternProcessFunction<EventPO, EventPO> {
+
+    /**
+     * @param map     map<模式名,模式名对应的匹配事件>
+     * @param context   enables access to time features and emitting results through side outputs
+     * @param collector Collector used to output the generated elements
+     * @throws Exception
+     */
     @Override
     public void processMatch(Map<String, List<EventPO>> map, Context context, Collector<EventPO> collector) throws Exception {
-
+//        collector.collect(map);
     }
 }

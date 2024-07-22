@@ -100,6 +100,7 @@ public class GroovyShellDemo {
         //执行脚本
         Object variableRes = shell.evaluate(groovy_script);
 
+        System.out.println("variableRes = " + variableRes);
 
     }
 }

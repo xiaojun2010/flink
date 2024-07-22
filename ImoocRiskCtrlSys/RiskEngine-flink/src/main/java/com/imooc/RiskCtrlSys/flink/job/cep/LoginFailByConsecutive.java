@@ -14,6 +14,7 @@ import org.apache.flink.streaming.api.windowing.time.Time;
  * zxj
  * description: 基于个体模式检测最近1分钟内连续登录失败超过3次的用户
  *              CEP模式：这3次登录失败事件之间不允许出现其他行为事件
+ *              严格近邻: 不允许在这1分钟内登录失败行为事件之间可以出现其他类型的行为事件
  * date: 2023
  */
 
@@ -59,7 +60,7 @@ public class LoginFailByConsecutive {
                  *
                  * *********************/
                 .times(3)
-                .consecutive()
+                .consecutive() //严格紧邻
                 .within(Time.seconds(60));
 
     }

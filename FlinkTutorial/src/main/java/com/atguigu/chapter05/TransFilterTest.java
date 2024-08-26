@@ -28,7 +28,7 @@ public class TransFilterTest {
             public boolean filter(Event e) throws Exception {
                 return e.user.equals("Mary");
             }
-        });
+        }).print("test1");
 
         // 传入FilterFunction实现类
         stream.filter(new UserFilter()).print();
@@ -38,7 +38,7 @@ public class TransFilterTest {
     public static class UserFilter implements FilterFunction<Event> {
         @Override
         public boolean filter(Event e) throws Exception {
-            return e.user.equals("Mary");
+            return e.user.equals("Bob");
         }
     }
 }

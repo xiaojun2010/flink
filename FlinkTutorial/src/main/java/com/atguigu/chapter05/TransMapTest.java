@@ -26,9 +26,9 @@ public class TransMapTest {
         stream.map(new MapFunction<Event, String>() {
             @Override
             public String map(Event e) throws Exception {
-                return e.user;
+                return e.user+": "+e.url;
             }
-        });
+        }).print("test");
 
         // 传入MapFunction的实现类
         stream.map(new UserExtractor()).print();

@@ -10,6 +10,7 @@ package com.atguigu.chapter02;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -19,11 +20,19 @@ import org.apache.flink.util.Collector;
 import java.util.Arrays;
 
 public class StreamWordCount {
+    //--host localhost --port 7777
     public static void main(String[] args) throws Exception {
         // 1. 创建流式执行环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        //从参数中提取主机名和端口号
+        ParameterTool parameterTool = ParameterTool.fromArgs(args);
+
+        String hostName = parameterTool.get("host"); //"localhost"
+        Integer port = parameterTool.getInt("port");//7777
+
+
         // 2. 读取文本流
-        DataStreamSource<String> lineDSS = env.socketTextStream("localhost", 7777); //nc -lk 7777
+        DataStreamSource<String> lineDSS = env.socketTextStream(hostName, port); //nc -lk 7777
         // 3. 转换数据格式
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOne = lineDSS
                 .flatMap((String line, Collector<String> words) -> {
@@ -41,7 +50,7 @@ public class StreamWordCount {
         // 6. 打印
         result.print();
         // 7. 执行
-        env.execute();
+        env.execute("StreamWordCount");
     }
 }
 
